@@ -102,7 +102,8 @@ static inline NSString * AFNounce() {
     CFStringRef string = CFUUIDCreateString(NULL, uuid);
     CFRelease(uuid);
 
-    return (NSString *)CFBridgingRelease(string);
+    NSString *uuidString = (NSString *)CFBridgingRelease(string);
+    return [uuidString stringByReplacingOccurrencesOfString:@"-" withString:@""];
 }
 
 static inline NSString * NSStringFromAFOAuthSignatureMethod(AFOAuthSignatureMethod signatureMethod) {
